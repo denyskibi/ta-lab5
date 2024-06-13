@@ -1,17 +1,31 @@
 # Standard Libraries
+from typing import List, Union, Tuple
 import heapq
 
 
 class Pyramid:
+    def get_medians(self, numbers: List[int]) -> list:
+        medians = []
+        lowers = []
+        highers = []
+
+        for number in numbers:
+            self._add_number(number, lowers, highers)
+            self._rebalance(lowers, highers)
+            retrieved_median = self._get_median(lowers, highers)
+            medians.append(retrieved_median)
+
+        return medians
+
     @staticmethod
-    def add_number(self, num, lowers, highers):
+    def _add_number(num, lowers, highers) -> None:
         if not lowers or num < -lowers[0]:
             heapq.heappush(lowers, -num)
         else:
             heapq.heappush(highers, num)
 
     @staticmethod
-    def rebalance(lowers, highers):
+    def _rebalance(lowers, highers) -> None:
         lowers_len = len(lowers)
         highers_len = len(highers)
 
@@ -21,7 +35,7 @@ class Pyramid:
             heapq.heappush(lowers, -heapq.heappop(highers))
 
     @staticmethod
-    def get_median(lowers, highers):
+    def _get_median(lowers, highers) -> Union[float, Tuple[int, int]]:
         lowers_len = len(lowers)
         highers_len = len(highers)
 
@@ -32,10 +46,3 @@ class Pyramid:
             return float(-lowers[0])
         else:
             float(highers[0])
-
-    @staticmethod
-    def get_medians(file_path: str):
-        lowers = []
-        highers = []
-
-
