@@ -17,6 +17,17 @@ class Pyramid:
 
         return medians
 
+    def get_heaps(self, numbers: List[int], iteration: int):
+        lowers, highers = [], []
+
+        for i, number in enumerate(numbers):
+            self._add_number(number, lowers, highers)
+            self._rebalance(lowers, highers)
+
+            if i == iteration:
+                lowers = [-x for x in lowers[:5]]
+                return lowers, highers[:5]
+
     @staticmethod
     def _add_number(num, lowers, highers) -> None:
         if not lowers or num < -lowers[0]:

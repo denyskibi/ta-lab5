@@ -27,6 +27,14 @@ def main():
         median_9876 = medians[9875]
         print(f"Median for iteration 2015: {median_2015}")
         print(f"Median for iteration 9876: {median_9876}")
+
+        # Task 2
+        # Step #1: Get low heap elements
+        low_heap_elements, high_heap_elements = pyramid.get_heaps(numbers=loaded_numbers, iteration=2014)
+
+        # Step #2: Print heap elements for specific iteration
+        print(f"[INFO] First five pyramid elements (Low): {low_heap_elements}")
+        print(f"[INFO] First five pyramid elements (High): {high_heap_elements}")
     except KeyboardInterrupt:
         print("[ERROR] Failed: script interrupted by user (CTRL + C)")
         stop()
