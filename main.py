@@ -23,7 +23,10 @@ def main():
         medians = pyramid.get_medians(numbers=loaded_numbers)
 
         # Step #3: Print needed medians
-        ...
+        median_2015 = medians[2014]
+        median_9876 = medians[9875]
+        print(f"Median for iteration 2015: {median_2015}")
+        print(f"Median for iteration 9876: {median_9876}")
     except KeyboardInterrupt:
         print("[ERROR] Failed: script interrupted by user (CTRL + C)")
         stop()
